@@ -1,10 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from 'react';
+import viteLogo from '/vite.svg';
+import reactLogo from './assets/react.svg';
+import { getPlayers } from './api';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    getPlayers().then((players) => console.log(players));
+    async function getAllPlayers() {
+      const players = await getPlayers();
+      console.log(players);
+    }
+    getAllPlayers();
+  }, []); 
+
+
 
   return (
     <>
